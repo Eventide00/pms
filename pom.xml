@@ -36,6 +36,7 @@
 		<hutool.version>5.1.0</hutool.version>
 		<weixin-java.version>3.7.0</weixin-java.version>
 		<ttl.version>2.11.4</ttl.version>
+		<lombok.version>1.18.20</lombok.version>
 	</properties>
 
 	<!-- 依赖声明 -->
@@ -55,6 +56,7 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-log4j2</artifactId>
+				<version>2.5.6</version>
 				<exclusions>
 					<exclusion>
 						<groupId>org.apache.logging.log4j</groupId>
@@ -201,55 +203,55 @@
 
 			<!-- 定时任务 -->
 			<dependency>
-				<groupId>com.zhaoxinms</groupId>
-				<artifactId>zhaoxinwy-quartz</artifactId>
-				<version>${zhaoxinwy.version}</version>
+				<groupId>com.pms</groupId>
+				<artifactId>pms-quartz</artifactId>
+				<version>${pms.version}</version>
 			</dependency>
 
 			<!-- 代码生成 -->
 			<dependency>
-				<groupId>com.zhaoxinms</groupId>
-				<artifactId>zhaoxinwy-generator</artifactId>
-				<version>${zhaoxinwy.version}</version>
+				<groupId>com.pms</groupId>
+				<artifactId>pms-generator</artifactId>
+				<version>${pms.version}</version>
 			</dependency>
 
 			<!-- 核心模块 -->
 			<dependency>
-				<groupId>com.zhaoxinms</groupId>
-				<artifactId>zhaoxinwy-framework</artifactId>
-				<version>${zhaoxinwy.version}</version>
+				<groupId>com.pms</groupId>
+				<artifactId>pms-framework</artifactId>
+				<version>${pms.version}</version>
 			</dependency>
 
 			<!-- 系统模块 -->
 			<dependency>
-				<groupId>com.zhaoxinms</groupId>
-				<artifactId>zhaoxinwy-system</artifactId>
-				<version>${zhaoxinwy.version}</version>
+				<groupId>com.pms</groupId>
+				<artifactId>pms-system</artifactId>
+				<version>${pms.version}</version>
 			</dependency>
 
 			<!-- 通用工具 -->
 			<dependency>
-				<groupId>com.zhaoxinms</groupId>
-				<artifactId>zhaoxinwy-common</artifactId>
-				<version>${zhaoxinwy.version}</version>
+				<groupId>com.pms</groupId>
+				<artifactId>pms-common</artifactId>
+				<version>${pms.version}</version>
 			</dependency>
 			
 			<dependency>
-				<groupId>com.zhaoxinms</groupId>
-				<artifactId>zhaoxinwy-pms</artifactId>
-				<version>${zhaoxinwy.version}</version>
+				<groupId>com.pms</groupId>
+				<artifactId>pms-core</artifactId>
+				<version>${pms.version}</version>
 			</dependency>
 			
 			<dependency>
-				<groupId>com.zhaoxinms</groupId>
-				<artifactId>zhaoxinwy-workflow</artifactId>
-				<version>${zhaoxinwy.version}</version>
+				<groupId>com.pms</groupId>
+				<artifactId>pms-workflow</artifactId>
+				<version>${pms.version}</version>
 			</dependency>
 			
 			<dependency>
-				<groupId>com.zhaoxinms</groupId>
-				<artifactId>zhaoxinwy-owner</artifactId>
-				<version>${zhaoxinwy.version}</version>
+				<groupId>com.pms</groupId>
+				<artifactId>pms-owner</artifactId>
+				<version>${pms.version}</version>
 			</dependency>
 
 			<dependency>
@@ -264,6 +266,15 @@
 				<artifactId>hutool-all</artifactId>
 				<version>${hutool.version}</version>
 			</dependency>
+			
+			<!-- Lombok -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
 			<!--weixin-java-common -->
 			<dependency>
 				<groupId>com.github.binarywang</groupId>
@@ -298,16 +309,16 @@
 	</dependencyManagement>
 
 	<modules>
-		<module>zhaoxinwy-admin</module>
-		<module>zhaoxinwy-framework</module>
-		<module>zhaoxinwy-system</module>
-		<module>zhaoxinwy-quartz</module>
-		<module>zhaoxinwy-generator</module>
-		<module>zhaoxinwy-common</module>
-		<module>zhaoxinwy-pms</module>
-		<module>zhaoxinwy-jmReport</module>
-		<module>zhaoxinwy-workflow</module>
-		<module>zhaoxinwy-tenant</module>
+		<module>pms-admin</module>
+		<module>pms-framework</module>
+		<module>pms-system</module>
+		<module>pms-quartz</module>
+		<module>pms-generator</module>
+		<module>pms-common</module>
+		<module>pms-core</module>
+		<module>pms-report</module>
+		<module>pms-workflow</module>
+		<module>pms-tenant</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -321,30 +332,71 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.8.1</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+						<path>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-configuration-processor</artifactId>
+							<version>2.5.6</version>
+						</path>
+					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
 	<repositories>
+		<!-- Maven Central - Official Repository -->
 		<repository>
-			<id>public</id>
+			<id>central</id>
+			<name>Maven Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!-- Aliyun Repository (backup/faster in China) -->
+		<!-- 
+		<repository>
+			<id>aliyun</id>
 			<name>aliyun nexus</name>
 			<url>https://maven.aliyun.com/repository/public</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
 		</repository>
+		-->
 	</repositories>
 
 	<pluginRepositories>
+		<!-- Maven Central - Official Plugin Repository -->
 		<pluginRepository>
-			<id>public</id>
+			<id>central</id>
+			<name>Maven Central Plugin Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<!-- Aliyun Plugin Repository (backup/faster in China) -->
+		<!-- 
+		<pluginRepository>
+			<id>aliyun</id>
 			<name>aliyun nexus</name>
 			<url>https://maven.aliyun.com/repository/public</url>
 			<releases>
@@ -354,6 +406,24 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
+		-->
 	</pluginRepositories>
+
+	<!-- Distribution Management - 配置部署仓库（可选） -->
+	<!-- 如果需要部署到私有仓库，取消以下注释并修改URL -->
+	<!-- 
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Releases Repository</name>
+			<url>http://your-nexus-server/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Snapshots Repository</name>
+			<url>http://your-nexus-server/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	-->
 
 </project>

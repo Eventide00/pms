@@ -2,32 +2,32 @@ version: "3.2"
 services:
   webapp-pms:
     image: "openjdk:8-jre-buster"
-    container_name: zhaoxinpms-web-backend
+    container_name: pms-web-backend
     command: java -jar /app.jar
     expose:
       - 8080
     volumes:
       - $PWD/uploads:/uploads
-      - $PWD/admin/zhaoxinwy-admin.jar:/admin/app.jar
+      - $PWD/admin/pms-admin.jar:/admin/app.jar
       - $PWD/admin/config:/admin/config
     networks:
       - default
 
   webapp-report:
     image: "openjdk:8-jre-buster"
-    container_name: zhaoxinpms-web-report
+    container_name: pms-web-report
     command: java -jar /app.jar
     expose:
       - 9000
     volumes:
-      - $PWD/report/zhaoxinwy-jmReport.jar:/report/app.jar
+      - $PWD/report/pms-report.jar:/report/app.jar
       - $PWD/report/config:/report/config
     networks:
       - default
 
   nginx:
     image: nginx:latest
-    container_name: zhaoxinpms-web-nginx
+    container_name: pms-web-nginx
     ports:
       - 9009:80
     volumes:
@@ -40,7 +40,7 @@ services:
 
   redis:
     image: "redis:6-buster"
-    container_name: zhaoxinpms-redis
+    container_name: pms-redis
     restart: always
     command: redis-server
     expose:
