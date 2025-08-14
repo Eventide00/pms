@@ -117,7 +117,7 @@ public class SwaggerConfig
         // 用ApiInfoBuilder进行定制
         return new ApiInfoBuilder()
                 // 设置标题
-                .title("标题：肇新智慧物业")
+                .title("标题：智慧物业管理系统")
                 // 描述
                 .description("描述：...")
                 // 作者信息

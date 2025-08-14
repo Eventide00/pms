@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      title: '肇新智慧物业',
+      title: '智慧物业管理系统',
       logo: logoImg,
     }
   }

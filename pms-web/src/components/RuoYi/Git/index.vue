@@ -9,7 +9,7 @@ export default {
   name: 'RuoYiGit',
   data() {
     return {
-      url: 'https://gitee.com/fanhuibin1/pms'
+      url: 'https://gitee.com/Eventide00/pms'
     }
   },
   methods: {

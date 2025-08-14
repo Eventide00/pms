@@ -1,10 +1,10 @@
 /**
- * Copyright 肇新智慧物业管理系统
+ * Copyright 智慧物业管理系统
  *
  * Licensed under AGPL开源协议
  *
- * gitee：https://gitee.com/fanhuibin1/pms
- * website：http://pms.zhaoxinms.com  wx： zhaoxinms
+ * Github：https://github.com/Eventide00/pms
+ * website：http://pms.example.com  wx： pms-support
  *
  */
 package com.pms.workflow.engine.designer.node;

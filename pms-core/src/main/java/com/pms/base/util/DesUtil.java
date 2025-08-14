@@ -25,7 +25,7 @@ public class DesUtil {
     private static int keysizeDES = 0;
     /**AES*/
     private static int keysizeAES = 128;
-    private static String key = "zhaoxinms";
+    private static String key = "pms123456";
 
     /**
      * 使用MessageDigest进行单向加密（无密码）

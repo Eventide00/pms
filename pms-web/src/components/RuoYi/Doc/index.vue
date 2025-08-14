@@ -9,7 +9,7 @@ export default {
   name: 'RuoYiDoc',
   data() {
     return {
-      url: 'http://zhaoxinms.com:81'
+      url: 'http://pms.example.com'
     }
   },
   methods: {
